@@ -1,5 +1,6 @@
 // import
 import express from 'express';
+import Company from '../../models/company/company';
 import EmPost from '../../models/employment/post';
 
 const router = express.Router();
@@ -7,7 +8,7 @@ const router = express.Router();
 router.post('/', async (req, res, next) => {
     try {
         await EmPost.create({
-            cotnent: req.body.content,
+            content: req.body.content,
             skills: req.body.skills,
             position: req.body.position,
             compensation: req.body.compensation,
@@ -62,6 +63,36 @@ router.put('/:empostId', async (req, res, next) => {
     }
 });
 
-router.get('/:empostId', async (req, res, next) => {});
-
+router.get('/:empostId', async (req, res, next) => {
+    try {
+        const empost = await EmPost.findOne({ where: { id: req.params.empostId } });
+        if (!empost) {
+            const data = {
+                message: 'failure',
+                data: '존재하지 않는 공고입니다.',
+            };
+            res.status(400).json(data);
+            return;
+        } else {
+            const fullPost = await EmPost.findAll({
+                where: { id: empost.id },
+                attributes: ['id', 'content', 'skills', 'position', 'compensation'],
+                include: [
+                    {
+                        model: Company,
+                        attributes: ['name', 'contry', 'region'],
+                    },
+                ],
+            });
+            const data = {
+                message: 'success',
+                data: fullPost,
+            };
+            res.status(200).json(data);
+        }
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
+});
 export default router;

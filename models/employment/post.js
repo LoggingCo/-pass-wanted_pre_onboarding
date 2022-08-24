@@ -4,7 +4,7 @@ class EmPost extends Model {
     static init(sequelize) {
         return super.init(
             {
-                cotnent: {
+                content: {
                     type: Sequelize.TEXT,
                     allowNull: false,
                     comment: '채용내용',
