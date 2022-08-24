@@ -81,4 +81,25 @@ router.get('/:empostId', async (req, res, next) => {
         next(err);
     }
 });
+
+router.delete('/:empostId', async (req, res, next) => {
+    try {
+        const empost = await EmPost.findOne({ where: { id: req.params.empostId } });
+        if (!empost) {
+            const data = FailureData('공고가 존재하지 않습니다.');
+            res.status(400).json(data);
+            return;
+        } else {
+            await EmPost.destroy({
+                where: { id: empost.id },
+            });
+            const data = SuccessData();
+            res.status(200).json(data);
+        }
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
+});
+
 export default router;
