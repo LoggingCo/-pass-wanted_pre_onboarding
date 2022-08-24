@@ -1,9 +1,7 @@
 // import
 import express from 'express';
-
-// import
-import express from 'express';
 import EmPost from '../../models/employment/post';
+
 const router = express.Router();
 
 router.post('/', async (req, res, next) => {
@@ -22,8 +20,8 @@ router.post('/', async (req, res, next) => {
 
         res.status(200).json(data);
     } catch (err) {
-        consolee.error(error);
-        next(error);
+        console.error(err);
+        next(err);
     }
 });
 
@@ -31,7 +29,7 @@ router.put('/:empostId', async (req, res, next) => {
     try {
         await EmPost.update(
             {
-                cotnent: req.body.content,
+                content: req.body.content,
                 skills: req.body.skills,
                 position: req.body.position,
                 compensation: req.body.compensation,
@@ -43,10 +41,27 @@ router.put('/:empostId', async (req, res, next) => {
                 },
             },
         );
+        const empost = await EmPost.findOne({ where: { id: req.params.empostId } });
+        if (!empost) {
+            const data = {
+                message: 'failure',
+                data: '존재하지 않는 공고입니다.',
+            };
+            res.status(400).json(data);
+            return;
+        } else {
+            const data = {
+                message: 'success',
+                data: empost,
+            };
+            res.status(200).json(data);
+        }
     } catch (err) {
-        console.log(err);
-        next(error);
+        console.error(err);
+        next(err);
     }
 });
+
+router.get('/:empostId', async (req, res, next) => {});
 
 export default router;

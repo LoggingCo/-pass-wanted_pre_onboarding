@@ -9,9 +9,6 @@ class User extends Model {
                     allowNull: false,
                     comment: '사용자 이름',
                 },
-                hobby: {
-                    type: Sequelize.STRING(100),
-                },
             },
             {
                 modelName: 'User',

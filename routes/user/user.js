@@ -8,19 +8,13 @@ router.post('/', async (req, res, next) => {
         await User.create({
             name: req.body.name,
         });
-        const user = await User.findOne({
-            where: {
-                name: req.body.name,
-            },
-        });
         const data = {
             message: 'success',
-            data: user,
         };
         res.status(200).json(data);
     } catch (err) {
-        consolee.error(error);
-        next(error);
+        console.error(err);
+        next(err);
     }
 });
 

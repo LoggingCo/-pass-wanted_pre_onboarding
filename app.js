@@ -7,6 +7,8 @@ import cors from 'cors';
 import morgan from 'morgan';
 import db from './models/index.js';
 import user from './routes/user/user.js';
+import emPost from './routes/employment/post.js';
+import company from './routes/company/company.js';
 
 // config
 const app = express();
@@ -46,9 +48,13 @@ if (process.env.NODE_ENV === 'production') {
         }),
     );
 }
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //router
 app.use('/user', user);
+app.use('/empost', emPost);
+app.use('/company', company);
 
 //express
 app.set('port', 9000);
