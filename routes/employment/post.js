@@ -84,8 +84,8 @@ router.get('/:empostId', async (req, res, next) => {
             anotherPost.map((v) => v.id !== fullPost.id && anotherPostId.push({ id: v.id }));
 
             const fullData = {
-                post: fullPost,
-                anotherPostId: anotherPostId,
+                ...fullPost.dataValues,
+                anotherPostId,
             };
 
             const data = SuccessData(fullData);
