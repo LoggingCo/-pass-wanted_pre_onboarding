@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
         const emposts = await EmPost.findAll({
             where,
             order: [['createdAt', 'DESC']],
-            attributes: ['id', 'content', 'skills', 'position', 'compensation'],
+            attributes: ['id', 'skills', 'position', 'compensation'],
             include: [
                 {
                     model: Company,

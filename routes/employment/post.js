@@ -63,7 +63,7 @@ router.get('/:empostId', async (req, res, next) => {
             res.status(400).json(data);
             return;
         } else {
-            const fullPost = await EmPost.findAll({
+            const fullPost = await EmPost.findOne({
                 where: { id: empost.id },
                 attributes: ['id', 'content', 'skills', 'position', 'compensation'],
                 include: [
@@ -73,7 +73,22 @@ router.get('/:empostId', async (req, res, next) => {
                     },
                 ],
             });
-            const data = SuccessData(fullPost);
+
+            const anotherPost = await EmPost.findAll({
+                where: { CompanyId: empost.CompanyId },
+                attributes: ['id'],
+            });
+
+            const anotherPostId = new Array();
+            console.log(fullPost);
+            anotherPost.map((v) => v.id !== fullPost.id && anotherPostId.push({ id: v.id }));
+
+            const fullData = {
+                post: fullPost,
+                anotherPostId: anotherPostId,
+            };
+
+            const data = SuccessData(fullData);
             res.status(200).json(data);
         }
     } catch (err) {
