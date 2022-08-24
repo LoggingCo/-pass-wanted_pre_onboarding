@@ -1,5 +1,7 @@
 // import
 import express from 'express';
+import { SuccessData } from '../../middleware/failureData';
+import { FailureData } from '../../middleware/successData';
 import Company from '../../models/company/company';
 import EmPost from '../../models/employment/post';
 
@@ -14,11 +16,7 @@ router.post('/', async (req, res, next) => {
             compensation: req.body.compensation,
             CompanyId: req.body.company,
         });
-
-        const data = {
-            message: 'success',
-        };
-
+        const data = SuccessData();
         res.status(200).json(data);
     } catch (err) {
         console.error(err);
@@ -44,17 +42,11 @@ router.put('/:empostId', async (req, res, next) => {
         );
         const empost = await EmPost.findOne({ where: { id: req.params.empostId } });
         if (!empost) {
-            const data = {
-                message: 'failure',
-                data: '존재하지 않는 공고입니다.',
-            };
+            const data = FailureData('존재하지 않는 공고입니다.');
             res.status(400).json(data);
             return;
         } else {
-            const data = {
-                message: 'success',
-                data: empost,
-            };
+            const data = SuccessData(empost);
             res.status(200).json(data);
         }
     } catch (err) {
@@ -67,10 +59,7 @@ router.get('/:empostId', async (req, res, next) => {
     try {
         const empost = await EmPost.findOne({ where: { id: req.params.empostId } });
         if (!empost) {
-            const data = {
-                message: 'failure',
-                data: '존재하지 않는 공고입니다.',
-            };
+            const data = FailureData('존재하지 않는 공고입니다.');
             res.status(400).json(data);
             return;
         } else {
@@ -84,10 +73,7 @@ router.get('/:empostId', async (req, res, next) => {
                     },
                 ],
             });
-            const data = {
-                message: 'success',
-                data: fullPost,
-            };
+            const data = SuccessData(fullPost);
             res.status(200).json(data);
         }
     } catch (err) {
