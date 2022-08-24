@@ -69,7 +69,7 @@ router.get('/:empostId', async (req, res, next) => {
                 include: [
                     {
                         model: Company,
-                        attributes: ['name', 'contry', 'region'],
+                        attributes: ['name', 'country', 'region'],
                     },
                 ],
             });

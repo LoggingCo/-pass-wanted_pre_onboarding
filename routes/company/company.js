@@ -8,7 +8,7 @@ router.post('/', async (req, res, next) => {
     try {
         await Company.create({
             name: req.body.name,
-            contry: req.body.contry,
+            country: req.body.country,
             region: req.body.region,
         });
         const data = SuccessData();

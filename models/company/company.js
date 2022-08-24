@@ -10,7 +10,7 @@ class Company extends Model {
                     unique: true,
                     comment: '회사명',
                 },
-                contry: {
+                country: {
                     type: Sequelize.STRING(100),
                     allowNull: false,
                     comment: '국가',
