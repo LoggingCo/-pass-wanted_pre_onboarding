@@ -1,12 +1,12 @@
 import { Model } from 'sequelize';
 
-class EmSupport extends Model {
+class EmApply extends Model {
     static init(sequelize) {
         return super.init(
             {},
             {
-                modelName: 'EmSupport',
-                tableName: 'emsupports',
+                modelName: 'EmApply',
+                tableName: 'emapplys',
                 charset: 'utf8',
                 collate: 'utf8_general_ci',
                 timestamps: true,
@@ -18,8 +18,8 @@ class EmSupport extends Model {
         );
     }
     static associate(db) {
-        db.EmSupport.belongsTo(db.EmPost);
-        db.EmSupport.belongsTo(db.User);
+        db.EmApply.belongsTo(db.EmPost);
+        db.EmApply.belongsTo(db.User);
     }
 }
-export default EmSupport;
+export default EmApply;

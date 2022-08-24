@@ -1,11 +1,11 @@
 import express from 'express';
 import { SuccessData } from '../../middleware/failureData';
-import EmSupport from '../../models/employment/support';
+import EmApply from '../../models/employment/apply';
 const router = express.Router();
 
 router.post('/', async (req, res, next) => {
     try {
-        await EmSupport.create({
+        await EmApply.create({
             UserId: req.body.userIdx,
             EmPostId: req.body.postIdx,
         });

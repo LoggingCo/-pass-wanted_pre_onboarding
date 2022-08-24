@@ -24,7 +24,7 @@ class User extends Model {
         );
     }
     static associate(db) {
-        db.User.hasMany(db.EmSupport);
+        db.User.hasMany(db.EmApply);
     }
 }
 export default User;
