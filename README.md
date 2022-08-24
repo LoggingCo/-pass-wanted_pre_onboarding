@@ -4,10 +4,10 @@
 
 ## ERD
 
-users - 사용자 테이블
-emposts - 채용공고 테이블
-emapplys - 채용지원 테이블 (중간 테이블 적용시 관계 이상으로 관계 테이블로 승격)
-companys - 회사 테이블
+users - 사용자 테이블 <br/>
+emposts - 채용공고 테이블 <br/>
+emapplys - 채용지원 테이블 (중간 테이블 적용시 관계 이상으로 관계 테이블로 승격) <br/>
+companys - 회사 테이블 <br/>
 
 ## 요구사항
 
