@@ -32,7 +32,7 @@ companys - 회사 테이블 <br/>
 
 ## Git commit 컨벤션
 
-[Fix] - 기능 수정
-[Feact] - 기능 추가
-[Create] - 초기 업로드
+[Fix] - 기능 수정 <br/>
+[Feact] - 기능 추가 <br/>
+[Create] - 초기 업로드 <br/>
 
