@@ -9,6 +9,7 @@ import db from './models/index.js';
 import user from './routes/user/user.js';
 import emPost from './routes/employment/post.js';
 import emPosts from './routes/employment/posts.js';
+import emSupports from './routes/employment/support.js';
 import company from './routes/company/company.js';
 
 // config
@@ -56,6 +57,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/user', user);
 app.use('/empost', emPost);
 app.use('/emposts', emPosts);
+app.use('/emsupports', emSupports);
 app.use('/company', company);
 
 //express
