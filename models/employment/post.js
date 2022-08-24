@@ -39,7 +39,7 @@ class EmPost extends Model {
         );
     }
     static associate(db) {
-        db.EmPost.hasMany(db.EmSupport);
+        db.EmPost.hasMany(db.EmApply);
         db.EmPost.belongsTo(db.Company);
     }
 }
