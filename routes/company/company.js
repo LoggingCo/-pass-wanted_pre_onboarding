@@ -14,7 +14,7 @@ router.post('/', async (req, res, next) => {
         const data = SuccessData();
         res.status(200).json(data);
     } catch (err) {
-        consolee.error(error);
+        console.error(error);
         next(error);
     }
 });
