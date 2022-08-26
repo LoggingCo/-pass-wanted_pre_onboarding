@@ -1,12 +1,6 @@
-export const SuccessData = (data) => {
-    if (data) {
-        return {
-            messaga: 'success',
-            data: data,
-        };
-    } else {
-        return {
-            messaga: 'success',
-        };
-    }
+export const FailureData = (message) => {
+    return {
+        message: 'success',
+        error: message,
+    };
 };
